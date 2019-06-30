@@ -19,7 +19,7 @@
             </collision>
 
             <inertial>
-                <mass value = "0.120"/>
+                <mass value = "0.170"/>
                 <origin rpy="0 0 0" xyz = "0 0 0"/>
                 <inertia ixx="8.7e-05" ixy="0.0" ixz="0.0" iyy="8.7e-05" iyz="0.0" izz="0.00015"/>
             </inertial>
@@ -34,6 +34,17 @@
         	<parent link="base"/>
         	<child link="link1"/>
     </joint>
+
+     <transmission name="trans_base_link1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="base_link1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_base_link1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
     <link name = "link1">
 			<visual>
@@ -65,11 +76,22 @@
         	<child link="link2"/>
         </joint>
 
+    <transmission name="trans_link1_link2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link1_link2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link1_link2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <link name = "link2">
 			<visual>
 				<origin rpy="0 0 0" xyz = "0 -0.02 0.05"/>
 				<geometry>
-               		<mesh filename="package://my_arm/meshes/link2.stl" scale = "0.001 0.001 0.001"/>
+               		<mesh filename="package://robotic_arm_pkg/meshes/link2.stl" scale = "0.001 0.001 0.001"/>
             	</geometry>
         	</visual>
             <collision>
@@ -86,6 +108,7 @@
             </inertial>
     </link>
 
+
     <joint name = "link2_link3" type = "revolute">
 			<axis xyz= "0 1 0"/>
 			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
@@ -94,11 +117,22 @@
         	<child link="link3"/>
         </joint>
 
+    <transmission name="trans_link2_link3">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link2_link3">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link2_link3">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <link name = "link3">
 			<visual>
 				<origin rpy="0 0 0" xyz = "-0.04 -0.045 0.03"/>
 				<geometry>
-               		<mesh filename="package://my_arm/meshes/link3.stl" scale = "0.001 0.001 0.001"/>
+               		<mesh filename="package://robotic_arm_pkg/meshes/link3.stl" scale = "0.001 0.001 0.001"/>
             	</geometry>
         	</visual>
 
@@ -124,18 +158,29 @@
         	<child link="link4"/>
         </joint>
 
+    <transmission name="trans_link3_link4">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link3_link4">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link3_link4">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <link name = "link4">
 			<visual>
 				<origin rpy="0 -1.57 1.57" xyz = "0.017 -0.0135 0.033"/>
 				<geometry>
-               		<mesh filename="package://my_arm/meshes/link4.stl" scale = "0.001 0.001 0.001"/>
+               		<mesh filename="package://robotic_arm_pkg/meshes/link4.stl" scale = "0.001 0.001 0.001"/>
             	</geometry>
         	</visual>
 
             <collision>
                 <origin rpy="0 -1.57 1.57" xyz = "0.017 -0.0135 0.033"/>
                 <geometry>
-                    <mesh filename="package://my_arm/meshes/link4.stl" scale = "0.001 0.001 0.001"/>
+                    <mesh filename="package://robotic_arm_pkg/meshes/link4.stl" scale = "0.001 0.001 0.001"/>
                 </geometry>
             </collision>
 
@@ -154,18 +199,29 @@
         	<child link="gripper_base"/>
         </joint>
 
+    <transmission name="trans_link4_gripper_base">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link4_gripper_base">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link4_gripper_base">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <link name = "gripper_base">
 			<visual>
 				<origin rpy="0 0 3.14" xyz = "0.1 0.095 0"/>
 				<geometry>
-               		<mesh filename="package://my_arm/meshes/gripper_base.stl" scale = "0.001 0.001 0.001"/>
+               		<mesh filename="package://robotic_arm_pkg/meshes/gripper_base.stl" scale = "0.001 0.001 0.001"/>
             	</geometry>
         	</visual>
 
             <collision>
                 <origin rpy="0 0 3.14" xyz = "0.1 0.095 0"/>
                 <geometry>
-                    <mesh filename="package://my_arm/meshes/gripper_base.stl" scale = "0.001 0.001 0.001"/>
+                    <mesh filename="package://robotic_arm_pkg/meshes/gripper_base.stl" scale = "0.001 0.001 0.001"/>
                 </geometry>
             </collision>
 
@@ -188,13 +244,13 @@
 			<visual>
 				<origin rpy="-1.57 0 0" xyz = "-0.150 -0.01 0.125"/>
 				<geometry>
-               		<mesh filename="package://my_arm/meshes/gripper_claw_L.stl" scale = "0.001 0.001 0.001"/>
+               		<mesh filename="package://robotic_arm_pkg/meshes/gripper_claw_L.stl" scale = "0.001 0.001 0.001"/>
             	</geometry>
         	</visual>
             <collision>
                 <origin rpy="-1.57 0 0" xyz = "-0.150 -0.01 0.125"/>
                 <geometry>
-                    <mesh filename="package://my_arm/meshes/gripper_claw_L.stl" scale = "0.001 0.001 0.001"/>
+                    <mesh filename="package://robotic_arm_pkg/meshes/gripper_claw_L.stl" scale = "0.001 0.001 0.001"/>
                 </geometry>
             </collision>
 
@@ -217,13 +273,13 @@
 			<visual>
 				<origin rpy="-1.57 0 3.14" xyz = "0.147 0.01 0.123"/>
 				<geometry>
-               		<mesh filename="package://my_arm/meshes/gripper_claw_R.stl" scale = "0.001 0.001 0.001"/>
+               		<mesh filename="package://robotic_arm_pkg/meshes/gripper_claw_R.stl" scale = "0.001 0.001 0.001"/>
             	</geometry>
         	</visual>
             <collision>
                 <origin rpy="-1.57 0 3.14" xyz = "0.147 0.01 0.123"/>
                 <geometry>
-                    <mesh filename="package://my_arm/meshes/gripper_claw_R.stl" scale = "0.001 0.001 0.001"/>
+                    <mesh filename="package://robotic_arm_pkg/meshes/gripper_claw_R.stl" scale = "0.001 0.001 0.001"/>
                 </geometry>
             </collision>
 
@@ -233,9 +289,12 @@
                 <inertia ixx="0.037" ixy="0.000274" ixz="-0.000001395" iyy="0.0245" iyz="0.000007207" izz="0.01526"/>
             </inertial>
     </link>
+
+
 <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-    
+    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    <legacyModeNS>true</legacyModeNS>
     </plugin>
   </gazebo>
 
