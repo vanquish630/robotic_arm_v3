@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <param name="robot_description" command="cat '$(find robotic_arm_pkg)/urdf/arm_meshed.urdf'" />
+    
+    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model my_arm" />
+
+    <rosparam command = "load" file = "$(find robotic_arm_pkg)/config/joints.yaml"/>
+    
+
+          
+</launch>
