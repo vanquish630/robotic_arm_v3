@@ -24,6 +24,7 @@ This solution is a bit hacky and not how it is done with industrial robots. Idea
 1) launch demo.launch
 2)in a new terminal type the following :
     sudo chmod -R 777 /dev/ttyUSB0
+    
     rosrun rosserial_python serial_node.py _port:=/dev/ttyUSB0 _baud:=115200
     
   where you can replace ttyUSB0 with what appears in the port section of your arduino IDE. In my case it was ttyACM0.
