@@ -12,3 +12,5 @@ Start motion planning of arm in Gazebo from MoveIt! RViz GUI using the following
 
 roslaunch moveit_config_arm_mesh robotic_arm_bringup_rviz.launch 
 
+Start planning in rviz and hit execute. The arm model in gazebo should also move.
+
