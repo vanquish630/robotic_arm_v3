@@ -1,0 +1,21 @@
+<launch>
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find robotic_arm_pkg)/config/robotic_arm_gazebo_joint_states.yaml" command="load"/>
+
+
+  <node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+		output="screen" ns="/arm_mesh" args="joint_state_controller" />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    		<param name="/use_gui" value="false"/>
+    		<rosparam param="/source_list">[/arm_mesh/joint_states]</rosparam>
+  </node>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+  </node>
+
+</launch>
+
+

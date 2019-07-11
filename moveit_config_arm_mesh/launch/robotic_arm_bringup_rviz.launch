@@ -1,0 +1,6 @@
+<launch> 
+ 
+	<!-- moveit launch file -->
+  	<include file="$(find moveit_config_arm_mesh)/launch/moveit_planning_execution.launch" />    
+
+</launch>
