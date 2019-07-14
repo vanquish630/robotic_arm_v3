@@ -8,5 +8,5 @@
 	<param name="use_controller_manager" value="$(arg use_controller_manager)" />
 
 	<!-- Load joint controller configurations from YAML file to parameter server -->
-	<rosparam file="$(find moveit_config_arm_mesh/config/controllers.yaml"/>
+	<rosparam file="$(find moveit_config_arm_mesh)/config/controllers.yaml"/>
 </launch>

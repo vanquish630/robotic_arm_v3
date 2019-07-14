@@ -1,5 +1,5 @@
 <launch>
-	<rosparam file="$(find robotic_arm_pkg)/config/trajectory_control.yaml" command="load"/>
+	<rosparam file="$(find gazebo_elements)/config/trajectory_control.yaml" command="load"/>
 
   <node name="robotic_arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
     output="screen" ns="/arm_mesh" args="robotic_arm_controller"/>
