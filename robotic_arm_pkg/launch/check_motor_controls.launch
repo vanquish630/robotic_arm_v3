@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+    
+  <rosparam file="$(find robotic_arm_pkg)/config/controllers.yaml" command="load"/>
+   
+  <arg name="model" default="$(find robotic_arm_pkg)/urdf/arm_meshed.urdf"/>
+  <arg name="gui" default="true" />
+  
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="robot_hardware_interface" pkg="robotic_arm_pkg" type="robot_hardware_interface" output="screen"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" >
+  </node>
+  
+  <node name="rviz" pkg="rviz" type="rviz"/>
+
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+            respawn="false" output="screen" ns="/arm_mesh"
+            args="--namespace=/arm_mesh
+            joint_state_controller
+            joint1_position_controller
+            joint2_position_controller
+            joint3_position_controller
+            joint4_position_controller
+            gripperbase_position_controller
+            
+            
+
+            ">
+  </node>
+
+
+</launch>
