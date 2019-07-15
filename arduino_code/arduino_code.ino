@@ -107,11 +107,11 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
 
 
 void servo_cb( const rospy_tutorials::Floats& cmd_msg){
-  //nh.loginfo("Command Received");
+  nh.loginfo("Command Received");
   
   int new_pos[5]={cmd_msg.data[0],cmd_msg.data[1],cmd_msg.data[2],cmd_msg.data[3],cmd_msg.data[4]};
   int i=0;
-  
+  res.res[0] = new_pos[0];
   for(i=0;i<5;i++)
   {
     if (new_pos[i]>cur_pos[i])
@@ -135,17 +135,17 @@ void callback(const robotic_arm_pkg::Floats_array::Request & req, robotic_arm_pk
   // Simulate function running for a non-deterministic amount of time
   
 
-  res.res_length=3;
+  res.res_length=5;
   readshoulder=analogRead(A0);
   readelbow=analogRead(A1);
   readwrist1=analogRead(A2);
   readwrist2=analogRead(A3);
-  readservo5=analogRead(A4);
-
-  res.res[0]=(readshoulder-100) * (180.0/325.0);
-  res.res[1]=(readelbow-103) * (180.0/314.0);
-  res.res[2]=(readwrist1-96) * (180.0/339.0);
-  res.res[3]=(readwrist2-96) * (180.0/339.0); 
+  
+   
+  res.res[1]=(readshoulder-100) * (180.0/325.0);
+  res.res[2]=(readelbow-103) * (180.0/314.0);
+  res.res[3]=(readwrist1-96) * (180.0/339.0);
+  res.res[4]=(readwrist2-96) * (180.0/339.0); 
 
   return;
   
