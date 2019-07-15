@@ -19,8 +19,6 @@
     <arg name="config" value="true"/>
   </include>
  
-<<<<<<< HEAD
+
 </launch>
-=======
-</launch>
->>>>>>> 2387ef79dd2274c599ad216d15bb6c82c7e9de55
+

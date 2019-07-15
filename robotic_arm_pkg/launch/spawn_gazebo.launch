@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <param name="robot_description" command="cat '$(find robotic_arm_pkg)/urdf/arm_meshed.urdf'" />
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find robotic_arm_pkg)/urdf/arm_meshed.urdf'"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+    <node name="rviz" pkg="rviz" type="rviz" args = " -d $(find robotic_arm_pkg)/launch/arm_config.rviz"/>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+        <param name="use_gui" value="True"/>
+    </node>
+
     
-    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+  <include file="$(find gazebo_elements)/launch/robotic_arm_world.launch" /> 
+
+    <!--<node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
           args="-urdf -param robot_description -model arm_mesh" />
+    -->
+    
+   
 
     <rosparam command = "load" file = "$(find robotic_arm_pkg)/config/controllers.yaml"/>
 
@@ -16,12 +31,13 @@
             joint3_position_controller
             joint4_position_controller
             gripperbase_position_controller
-            gripperL_position_controller
-            ">
-        	</node>
+            
+            
 
-	<node name ="rqt_reconfigure" pkg ="rqt_reconfigure" type="rqt_reconfigure"/>
-	<node name ="rqt_publisher" pkg ="rqt_publisher" type="rqt_publisher"/>
+            ">
+  </node>
+
+	
 
 
 

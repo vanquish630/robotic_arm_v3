@@ -8,9 +8,9 @@ ros::NodeHandle  nh;
 
 int cur_pos[3]={0,0,0};
 
-Servo servo1,servo2,servo3,servo4,servo5;
+Servo shoulder,elbow,wrist1,wrist2;
 
-float readservo1=0,readservo2=0,readservo3=0,readservo4=0,readservo5=0;
+float readshoulder=0,readelbow=0,readwrist1=0,readwrist2=0,readservo5=0;
 
 void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
 {
@@ -24,7 +24,7 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
     {
       for(pos=cur_pos;pos<= new_pos;pos += 1)
       {
-        servo1.write(pos);
+        shoulder.write(pos);
         delay(10);
       }      
     }
@@ -32,7 +32,7 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
     {
       for(pos=cur_pos;pos>= new_pos;pos -= 1)
       {
-        servo1.write(pos);
+        shoulder.write(pos);
         delay(10);
       }      
     }
@@ -41,17 +41,13 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
   {
     if (new_pos<12)
       new_pos=12;
-    else if(new_pos > 161)
-    {
-      //nh.loginfo("Limiting Servo2 to 155");
-      new_pos=155;
-    }
+    
     
     if (dir == 1)
     {
       for(pos=cur_pos;pos<= new_pos;pos += 1)
       {
-        servo2.write(pos);
+        elbow.write(pos);
         delay(10);
       }      
     }
@@ -59,7 +55,7 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
     {
       for(pos=cur_pos;pos>= new_pos;pos -= 1)
       {
-        servo2.write(pos);
+        elbow.write(pos);
         delay(10);
       }      
     }
@@ -72,7 +68,7 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
     {
       for(pos=cur_pos;pos<= new_pos;pos += 1)
       {
-        servo3.write(pos);
+        wrist1.write(pos);
         delay(10);
       }      
     }
@@ -80,7 +76,7 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
     {
       for(pos=cur_pos;pos>= new_pos;pos -= 1)
       {
-        servo3.write(pos);
+        wrist1.write(pos);
         delay(10);
       }      
     }
@@ -93,7 +89,7 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
     {
       for(pos=cur_pos;pos<= new_pos;pos += 1)
       {
-        servo4.write(pos);
+        wrist2.write(pos);
         delay(10);
       }      
     }
@@ -101,42 +97,22 @@ void rotate_servo(int servo,int new_pos,int cur_pos,int dir)
     {
       for(pos=cur_pos;pos>= new_pos;pos -= 1)
       {
-        servo4.write(pos);
+        wrist2.write(pos);
         delay(10);
       }      
     }
   }
-  if (servo==4)
-  {
-    if (new_pos<6)
-      new_pos=6;
-    if (dir == 1)
-    {
-      for(pos=cur_pos;pos<= new_pos;pos += 1)
-      {
-        servo5.write(pos);
-        delay(10);
-      }      
-    }
-    else if(dir == -1)
-    {
-      for(pos=cur_pos;pos>= new_pos;pos -= 1)
-      {
-        servo5.write(pos);
-        delay(10);
-      }      
-    }
-  }
+  
 }
 
 
 void servo_cb( const rospy_tutorials::Floats& cmd_msg){
   //nh.loginfo("Command Received");
   
-  int new_pos[3]={cmd_msg.data[0],cmd_msg.data[1],cmd_msg.data[2]};
+  int new_pos[5]={cmd_msg.data[0],cmd_msg.data[1],cmd_msg.data[2],cmd_msg.data[3],cmd_msg.data[4]};
   int i=0;
   
-  for(i=0;i<3;i++)
+  for(i=0;i<5;i++)
   {
     if (new_pos[i]>cur_pos[i])
     {
@@ -160,12 +136,17 @@ void callback(const robotic_arm_pkg::Floats_array::Request & req, robotic_arm_pk
   
 
   res.res_length=3;
-  readservo1=analogRead(A0);
-  readservo2=analogRead(A1);
-  readservo3=analogRead(A2);
-  res.res[0]=(readservo1-100) * (180.0/325.0);
-  res.res[1]=(readservo2-103) * (180.0/314.0);
-  res.res[2]=(readservo3-96) * (180.0/339.0);  
+  readshoulder=analogRead(A0);
+  readelbow=analogRead(A1);
+  readwrist1=analogRead(A2);
+  readwrist2=analogRead(A3);
+  readservo5=analogRead(A4);
+
+  res.res[0]=(readshoulder-100) * (180.0/325.0);
+  res.res[1]=(readelbow-103) * (180.0/314.0);
+  res.res[2]=(readwrist1-96) * (180.0/339.0);
+  res.res[3]=(readwrist2-96) * (180.0/339.0); 
+
   return;
   
 }
@@ -182,12 +163,17 @@ void setup(){
   nh.subscribe(sub);
   nh.advertiseService(server);
   
-  servo1.attach(6); //attach it to pin 9
-  servo2.attach(9);
-  servo3.attach(11);
-  servo1.write(0);
-  servo2.write(0);
-  servo3.write(0);
+  shoulder.attach(8);
+  elbow.attach(9);
+  wrist1.attach(10);
+  wrist2.attach(11);
+
+  shoulder.write(0);
+  elbow.write(0);
+  wrist1.write(0);
+  wrist2.write(0);
+  
+
   
   
 }

@@ -18,11 +18,13 @@ ROBOTHardwareInterface::~ROBOTHardwareInterface() {
 
 void ROBOTHardwareInterface::init() {
     
-    num_joints_=3;
-	joint_names_[0]="joint1";	
-	joint_names_[1]="joint2";
-	joint_names_[2]="joint3";
-	
+    num_joints_=5;
+	joint_names_[0]="base_link1";	
+	joint_names_[1]="link1_link2";
+	joint_names_[2]="link2_link3";
+    joint_names_[3]="link3_link4";
+    joint_names_[4]="link4_gripper_base";
+
 
     for (int i = 0; i < num_joints_; ++i) {
 
@@ -54,9 +56,12 @@ void ROBOTHardwareInterface::read() {
 	if(client.call(joint_read))
 	{
 	    
-		joint_position_[0]=angles::from_degrees(90-joint_read.response.res[0]);
-		joint_position_[1]=angles::from_degrees(joint_read.response.res[1]-90);
-		joint_position_[2]=angles::from_degrees(joint_read.response.res[2]-90);
+		joint_position_[0]=angles::from_degrees(joint_read.response.res[0]);
+		joint_position_[1]=angles::from_degrees(joint_read.response.res[1]);
+		joint_position_[2]=angles::from_degrees(joint_read.response.res[2]);
+        joint_position_[3]=angles::from_degrees(joint_read.response.res[3]);
+        joint_position_[4]=angles::from_degrees(joint_read.response.res[4]);
+       
 		
 		//ROS_INFO("Receiving  j1: %.2f, j2: %.2f, j3: %.2f",joint_read.response.res[0],joint_read.response.res[1], joint_read.response.res[2]);
 		
@@ -66,6 +71,10 @@ void ROBOTHardwareInterface::read() {
     	joint_position_[0]=0;
         joint_position_[1]=0;
         joint_position_[2]=0;
+        joint_position_[3]=0;
+        joint_position_[4]=0;
+        
+
         //ROS_INFO("Service not found ");
     }
         
@@ -75,9 +84,11 @@ void ROBOTHardwareInterface::read() {
 void ROBOTHardwareInterface::write(ros::Duration elapsed_time) {
     
 	joints_pub.data.clear();
-	joints_pub.data.push_back(90-(angles::to_degrees(joint_position_command_[0])));
-	joints_pub.data.push_back(90+(angles::to_degrees(joint_position_command_[1])));
-	joints_pub.data.push_back(90+(angles::to_degrees(joint_position_command_[2])));
+	joints_pub.data.push_back((angles::to_degrees(joint_position_command_[0])));
+	joints_pub.data.push_back((angles::to_degrees(joint_position_command_[1])));
+	joints_pub.data.push_back((angles::to_degrees(joint_position_command_[2])));
+    joints_pub.data.push_back((angles::to_degrees(joint_position_command_[3])));
+    joints_pub.data.push_back((angles::to_degrees(joint_position_command_[4])));
 	//ROS_INFO("Publishing j1: %.2f, j2: %.2f, j3: %.2f",joints_pub.data[0],joints_pub.data[1],joints_pub.data[2]);
 	pub.publish(joints_pub);	
 }
