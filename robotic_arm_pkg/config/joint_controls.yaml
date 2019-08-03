@@ -1,0 +1,18 @@
+arm_mesh:
+ arm_control:
+    type: "position_controllers/JointPositionController"
+    joints:
+      - base_link1
+      - link1_link2
+      - link2_link3
+      - link3_link4
+      - link4_gripper_base
+      
+
+    gains:
+      base_link1:   {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      link1_link2: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      link2_link3: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      link3_link4: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      link4_gripper_base:    {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      

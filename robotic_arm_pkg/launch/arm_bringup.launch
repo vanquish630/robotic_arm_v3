@@ -1,0 +1,20 @@
+<launch>
+
+<group ns="/arm_mesh">
+  		<rosparam file="$(find robotic_arm_pkg)/config/controllers.yaml" command="load" ns="/arm_mesh"/>
+
+
+ 		 <node name="controller_spawner" pkg="controller_manager" type="spawner"
+            respawn="false" output="screen" 
+            args="
+            /arm_mesh/joint_state_controller
+            /arm_mesh/joint1_position_controller
+            /arm_mesh/joint2_position_controller
+            /arm_mesh/joint3_position_controller
+            /arm_mesh/joint4_position_controller
+            /arm_mesh/gripperbase_position_controller
+            "/>
+
+</group>
+
+</launch>

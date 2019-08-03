@@ -1,0 +1,38 @@
+<launch>
+
+  <rosparam file="$(find moveit_config_arm_mesh)/config/trajectory_control.yaml" command="load"/>
+  
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find moveit_config_arm_mesh)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+  
+  <node name="ROBOT_hardware_interface" pkg="robotic_arm_pkg" type="robot_hardware_interface" output="screen"/>
+
+  <node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+		output="screen" args="/arm_mesh/joint_state_controller" >
+  </node>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+  </node>
+  
+
+  <node name="joint_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="arm_mesh/robotic_arm_controller"/>
+
+ 
+
+  <include file="$(find moveit_config_arm_mesh)/launch/move_group.launch">
+  <arg name="publish_monitored_planning_scene" value="true" />
+  </include>
+
+  <include file="$(find moveit_config_arm_mesh)/launch/moveit_rviz.launch"> 
+  <arg name="config" value="true"/>
+  </include>
+  
+  <!-- <node name="simple_marker" pkg="three_dof_planar_manipulator" type="simple_marker.py" output="screen"  >
+  </node> -->
+    
+</launch>

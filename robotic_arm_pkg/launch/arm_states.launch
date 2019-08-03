@@ -1,0 +1,11 @@
+<launch>
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find robotic_arm_pkg)/config/joint_state_controls.yaml" command="load"/>
+
+
+  <node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+		output="screen" ns="/arm_mesh" args="joint_state_controller" />
+
+</launch>
+
+

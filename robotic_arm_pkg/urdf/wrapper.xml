@@ -1,0 +1,6 @@
+<robot file="arm_meshed_without_trans.dae">
+  <Manipulator name="arm_mesh">
+    <base>base</base>
+    <effector>gripper_base</effector>
+  </Manipulator>
+</robot>

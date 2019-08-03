@@ -8,26 +8,26 @@ arm_mesh:
   joint1_position_controller:
     type: position_controllers/JointPositionController
     joint: base_link1
-    pid: {p: 1000.0, i: 0, d: 0.1}
+    pid: {p: 100.0, i: 1.0, d: 0.1}
 
   joint2_position_controller:
     type: position_controllers/JointPositionController
     joint: link1_link2
-    pid: {p: 1000.0, i: 0, d: 0.1}
+    pid: {p: 100.0, i: 1.0, d: 0.1}
 
   joint3_position_controller:
     type: position_controllers/JointPositionController
     joint: link2_link3
-    pid: {p: 1000.0, i: 0, d: 0.1}
+    pid: {p: 100.0, i: 1.0, d: 0.1}
 
   joint4_position_controller:
     type: position_controllers/JointPositionController
     joint: link3_link4
-    pid: {p: 1000.0, i: 0, d: 0.1}
+    pid: {p: 100.0, i: 1.0, d: 0.1}
 
   gripperbase_position_controller:
     type: position_controllers/JointPositionController
     joint: link4_gripper_base
-    pid: {p: 1000.0, i: 0, d: 0.1}
+    pid: {p: 100.0, i: 1.0, d: 0.1}
 
  

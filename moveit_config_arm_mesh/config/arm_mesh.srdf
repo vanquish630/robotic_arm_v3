@@ -28,6 +28,21 @@
         <joint name="link3_link4" value="0" />
         <joint name="link4_gripper_base" value="0" />
     </group_state>
+    <group_state name="close" group="gripper">
+        <joint name="gripper_base_claw_L" value="0" />
+        <joint name="gripper_base_claw_R" value="0" />
+    </group_state>
+    <group_state name="open" group="gripper">
+        <joint name="gripper_base_claw_L" value="1.223" />
+        <joint name="gripper_base_claw_R" value="1.1536" />
+    </group_state>
+    <group_state name="pick" group="arm">
+        <joint name="base_link1" value="0" />
+        <joint name="link1_link2" value="0.7026" />
+        <joint name="link2_link3" value="1.1536" />
+        <joint name="link3_link4" value="1.1536" />
+        <joint name="link4_gripper_base" value="0" />
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="claw" parent_link="gripper_base" group="gripper" parent_group="arm" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->

@@ -10,9 +10,9 @@ arm_mesh:
       
 
     gains:
-      base_link1:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
-      link1_link2: {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
-      link2_link3: {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
-      link3_link4:       {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
-      link4_gripper_base:    {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      base_link1:   {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      link1_link2: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      link2_link3: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      link3_link4: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
+      link4_gripper_base:    {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
       

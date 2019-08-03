@@ -1,0 +1,257 @@
+<?xml version = "1.0" ?>
+<robot name="arm_mesh">
+	<link name = "base">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/base.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+
+            <collision>
+                <origin rpy="0 0 0" xyz = "0 0 0"/>
+                <geometry>
+                    <cylinder radius="0.05" length="0.035"/>
+                </geometry>
+            </collision>
+
+    
+    </link>
+
+
+    <joint name = "base_link1" type = "revolute">
+			<axis xyz= "0 0 1"/>
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+        	<origin rpy="0 0 0" xyz="0 0 0.035"/>
+        	<parent link="base"/>
+        	<child link="link1"/>
+    </joint>
+
+     
+
+    <link name = "link1">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/link1.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+
+            <collision>
+                <origin rpy="0 0 0" xyz = "0 0 0.015"/>
+                <geometry>
+                    <cylinder radius="0.035" length="0.03"/>
+                </geometry>
+            </collision>
+
+        
+    </link>
+
+    <joint name = "link1_link2" type = "revolute">
+			<axis xyz= "0 1 0"/>
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+        	<origin rpy="0 0 0" xyz="0 0 0.05"/>
+        	<parent link="link1"/>
+        	<child link="link2"/>
+        </joint>
+
+    
+
+    <link name = "link2">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/link2.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+            <collision>
+                <origin rpy="0 0 0" xyz = "0 0 0.05"/>
+                <geometry>
+                    <box size ="0.025 0.054 0.12"/>
+                </geometry>
+            </collision>
+
+           
+    </link>
+
+
+    <joint name = "link2_link3" type = "revolute">
+			<axis xyz= "0 1 0"/>
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+        	<origin rpy="0 0 0" xyz="0 0 0.095"/>
+        	<parent link="link2"/>
+        	<child link="link3bot"/>
+        </joint>
+
+    
+
+<link name = "link3bot">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/link3bot.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+
+            <collision>
+                <origin rpy="0 0 0" xyz = "0 0 0.045"/>
+                <geometry>
+                    <box size="0.03 0.04 0.14"/>
+                </geometry>
+            </collision>
+
+        
+    </link>
+
+    <joint name = "link3bot_link3top" type = "revolute">
+			<axis xyz= "0 0 1"/>
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+        	<origin rpy="0 0 0" xyz="0 0 0.05"/>
+        	<parent link="link3bot"/>
+        	<child link="link3top"/>
+        </joint>
+
+<link name = "link3top">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/link3top.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+
+            <collision>
+                <origin rpy="0 0 0" xyz = "0 0 0.045"/>
+                <geometry>
+                    <box size="0.03 0.04 0.14"/>
+                </geometry>
+            </collision>
+
+        
+    </link>
+
+    <joint name = "link3top_link4" type = "revolute">
+			<axis xyz= "0 1 0"/>
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+        	<origin rpy="0 0 0" xyz="0 0 0.04"/>
+        	<parent link="link3top"/>
+        	<child link="link4"/>
+        </joint>
+
+
+    <link name = "link4">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/link4.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+
+            <collision>
+                <origin rpy="0 -1.57 1.57" xyz = "0.017 -0.0135 0.033"/>
+                <geometry>
+                    <mesh filename="package://robotic_arm_pkg/meshes/link4.stl" scale = "0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
+
+           
+    </link>
+
+    <joint name = "link4_gripper_base" type = "revolute">
+			<axis xyz= "0 0 1"/>
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+        	<origin rpy="0 0 0" xyz="-0.01 0 0.06"/>
+        	<parent link="link4"/>
+        	<child link="gripper_base"/>
+        </joint>
+
+    
+
+    <link name = "gripper_base">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/gripper_base.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+
+            <collision>
+                <origin rpy="0 0 0" xyz = "0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robotic_arm_pkg/meshes/gripper_base.stl" scale = "0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
+
+            
+    </link>
+
+ <joint name = "gripper_base_claw_L" type = "revolute">
+			<axis xyz= "1 0 0"/>
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+        	<origin rpy="0 0 0" xyz="0 -0.008 0.018"/>
+        	<parent link="gripper_base"/>
+        	<child link="claw_L"/>
+        </joint>
+
+    <link name = "claw_L">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/gripper_claw_L.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+            <collision>
+                <origin rpy="-1.57 0 0" xyz = "-0.150 -0.01 0.125"/>
+                <geometry>
+                    <mesh filename="package://robotic_arm_pkg/meshes/gripper_claw_L.stl" scale = "0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value = "0.007"/>
+                <origin rpy="0 0 0" xyz = "0 0 0 "/>
+                <inertia ixx="0.037" ixy="0.000274" ixz="-0.000001395" iyy="0.0245" iyz="0.000007207" izz="0.01526"/>
+            </inertial>
+    </link>
+
+    <joint name = "gripper_base_claw_R" type = "revolute">
+			<axis xyz= "-1 0 0"/>
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+        	<origin rpy="0 0 0" xyz="0 0.008 0.018"/>
+        	<parent link="gripper_base"/>
+        	<child link="claw_R"/>
+        </joint>
+
+    <link name = "claw_R">
+			<visual>
+				<origin rpy="0 0 0" xyz = "0 0 0"/>
+				<geometry>
+               		<mesh filename="package://robotic_arm_pkg/meshes/gripper_claw_R.stl" scale = "0.001 0.001 0.001"/>
+            	</geometry>
+        	</visual>
+            <collision>
+                <origin rpy="-1.57 0 3.14" xyz = "0.147 0.01 0.123"/>
+                <geometry>
+                    <mesh filename="package://robotic_arm_pkg/meshes/gripper_claw_R.stl" scale = "0.001 0.001 0.001"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value = "0.007"/>
+               <origin rpy="0 0 0" xyz = "0 0 0 "/>
+                <inertia ixx="0.037" ixy="0.000274" ixz="-0.000001395" iyy="0.0245" iyz="0.000007207" izz="0.01526"/>
+            </inertial>
+    </link>
+
+
+ <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/arm_mesh</robotNamespace>
+    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+
+   
+
+</robot>

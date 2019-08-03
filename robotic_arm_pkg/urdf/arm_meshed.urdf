@@ -26,7 +26,7 @@
 
     <joint name = "base_link1" type = "revolute">
 			<axis xyz= "0 0 1"/>
-			<limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5" />
+			<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
         	<origin rpy="0 0 0" xyz="0 0 0.0175"/>
         	<parent link="base"/>
         	<child link="link1"/>
@@ -207,7 +207,7 @@
       </actuator>
     </transmission>
 
-    <link name = "gripper_base">
+   <link name = "gripper_base">
 			<visual>
 				<origin rpy="0 0 3.14" xyz = "0.1 0.095 0"/>
 				<geometry>
@@ -228,6 +228,7 @@
                 <inertia ixx="0.00156" ixy="0.0000274" ixz="-0.00001845" iyy="0.0016" iyz="0.000032" izz="0.0027"/>
             </inertial>
     </link>
+    
 
  <joint name = "gripper_base_claw_L" type = "revolute">
 			<axis xyz= "1 0 0"/>
@@ -288,7 +289,7 @@
     </link>
 
 
-<gazebo>
+ <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
     <robotNamespace>/arm_mesh</robotNamespace>
     <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
