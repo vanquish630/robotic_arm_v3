@@ -3,8 +3,9 @@ controller_list:
     joints:
       - base_link1
       - link1_link2
-      - link2_link3
-      - link3_link4
+      - link2_link3bot
+      - link3bot_link3top
+      - link3top_link4
       - link4_gripper_base
   - name: fake_gripper_controller
     joints:

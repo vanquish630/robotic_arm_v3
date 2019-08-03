@@ -22,12 +22,17 @@ joint_limits:
     max_velocity: 0.5
     has_acceleration_limits: false
     max_acceleration: 0
-  link2_link3:
+  link2_link3bot:
     has_velocity_limits: true
     max_velocity: 0.5
     has_acceleration_limits: false
     max_acceleration: 0
-  link3_link4:
+  link3bot_link3top:
+    has_velocity_limits: true
+    max_velocity: 0.5
+    has_acceleration_limits: false
+    max_acceleration: 0
+  link3top_link4:
     has_velocity_limits: true
     max_velocity: 0.5
     has_acceleration_limits: false
