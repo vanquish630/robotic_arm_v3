@@ -6,7 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Axes1
         - /RobotModel1
         - /RobotModel1/Links1
         - /TF1/Frames1
@@ -55,18 +54,18 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz/Axes
-      Enabled: false
+      Enabled: true
       Length: 1
       Name: Axes
       Radius: 0.00200000009
       Reference Frame: <Fixed Frame>
-      Value: false
+      Value: true
     - Alpha: 1
       Class: rviz/RobotModel
-      Collision Enabled: false
+      Collision Enabled: true
       Enabled: true
       Links:
-        All Links Enabled: true
+        All Links Enabled: false
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -80,12 +79,12 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
+          Value: false
         claw_R:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
+          Value: false
         gripper_base:
           Alpha: 1
           Show Axes: false
@@ -189,25 +188,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.588798463
+      Distance: 0.283360869
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.0421624929
-        Y: 0.0718785673
-        Z: 0.0642698556
+        X: 0.0760810599
+        Y: -0.0189800616
+        Z: 0.268388093
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.329797506
+      Pitch: 0.349797487
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.64038897
+      Yaw: 3.42039251
     Saved: ~
 Window Geometry:
   Displays:
