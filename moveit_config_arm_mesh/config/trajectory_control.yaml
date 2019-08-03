@@ -1,4 +1,9 @@
 arm_mesh:
+
+ joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+  
  robotic_arm_controller:
     type: "position_controllers/JointTrajectoryController"
     joints:
@@ -17,4 +22,3 @@ arm_mesh:
       link3bot_link3top: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
       link3top_link4: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
       link4_gripper_base: {p: 100.0, i: 1.0, d: 0.1, i_clamp: 0.0}
-      

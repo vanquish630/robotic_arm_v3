@@ -1,0 +1,14 @@
+controller_manager_ns: controller_manager
+controller_list:
+  - name: arm_mesh/robotic_arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - base_link1
+      - link1_link2
+      - link2_link3bot
+      - link3bot_link3top
+      - link3top_link4
+      - link4_gripper_base
+      
