@@ -15,6 +15,12 @@
                 </geometry>
             </collision>
 
+            <inertial>
+                <mass value = "0.170"/>
+                <origin rpy="0 0 0" xyz = "0 0 0"/>
+                <inertia ixx="8.7e-05" ixy="0.0" ixz="0.0" iyy="8.7e-05" iyz="0.0" izz="0.00015"/>
+            </inertial>
+
     
     </link>
 
@@ -27,7 +33,16 @@
         	<child link="link1"/>
     </joint>
 
-     
+     <transmission name="trans_base_link1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="base_link1">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_base_link1">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
     <link name = "link1">
 			<visual>
@@ -44,6 +59,12 @@
                 </geometry>
             </collision>
 
+            <inertial>
+                <mass value = "0.075"/>
+                <origin rpy="0 0 0" xyz = "0 0 0.0325 "/>
+                <inertia ixx="0.037" ixy="0.000274" ixz="-0.000001395" iyy="0.0245" iyz="0.000007207" izz="0.01526"/>
+            </inertial>
+
         
     </link>
 
@@ -54,6 +75,17 @@
         	<parent link="link1"/>
         	<child link="link2"/>
         </joint>
+
+    <transmission name="trans_link1_link2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link1_link2">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link1_link2">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
     
 
@@ -71,6 +103,12 @@
                 </geometry>
             </collision>
 
+            <inertial>
+                <mass value = "0.018"/>
+                <origin rpy="0 0 0" xyz = "0 0 -0.005 "/>
+                <inertia ixx="0.037" ixy="0.000274" ixz="-0.000001395" iyy="0.0245" iyz="0.000007207" izz="0.01526"/>
+            </inertial>
+
            
     </link>
 
@@ -82,6 +120,17 @@
         	<parent link="link2"/>
         	<child link="link3bot"/>
         </joint>
+
+    <transmission name="trans_link2_link3bot">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link2_link3bot">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link2_link3bot">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
     
 
@@ -100,6 +149,12 @@
                 </geometry>
             </collision>
 
+            <inertial>
+                <mass value = "0.185"/>
+                <origin rpy="0 0 0" xyz = "0 0 -0.01 "/>
+                <inertia ixx="0.037" ixy="0.000274" ixz="-0.000001395" iyy="0.0245" iyz="0.000007207" izz="0.01526"/>
+            </inertial>
+
         
     </link>
 
@@ -110,6 +165,17 @@
         	<parent link="link3bot"/>
         	<child link="link3top"/>
         </joint>
+
+    <transmission name="trans_link3bot_link3top">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link3bot_link3top">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link3bot_link3top">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
 <link name = "link3top">
 			<visual>
@@ -126,6 +192,12 @@
                 </geometry>
             </collision>
 
+            <inertial>
+                <mass value = "0.075"/>
+                <origin rpy="0 0 0" xyz = "0 0 -0.01 "/>
+                <inertia ixx="0.037" ixy="0.000274" ixz="-0.000001395" iyy="0.0245" iyz="0.000007207" izz="0.01526"/>
+            </inertial>
+
         
     </link>
 
@@ -136,6 +208,17 @@
         	<parent link="link3top"/>
         	<child link="link4"/>
         </joint>
+
+    <transmission name="trans_link3top_link4">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link3top_link4">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link3top_link4">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
 
     <link name = "link4">
@@ -153,6 +236,12 @@
                 </geometry>
             </collision>
 
+            <inertial>
+                <mass value = "0.025"/>
+                <origin rpy="0 0 0" xyz = "0 0 0 "/>
+                <inertia ixx="0.00485" ixy="-0.000197" ixz="-0.00017" iyy="0.0084" iyz="0.0" izz="0.0042"/>
+            </inertial>
+
            
     </link>
 
@@ -163,6 +252,17 @@
         	<parent link="link4"/>
         	<child link="gripper_base"/>
         </joint>
+
+    <transmission name="trans_link4_gripper_base">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="link4_gripper_base">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_link4_gripper_base">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
     
 
@@ -181,6 +281,12 @@
                 </geometry>
             </collision>
 
+            <inertial>
+                <mass value = "0.020"/>
+                <origin rpy="0 0 0" xyz = "0 0 0 "/>
+                <inertia ixx="0.00156" ixy="0.0000274" ixz="-0.00001845" iyy="0.0016" iyz="0.000032" izz="0.0027"/>
+            </inertial>
+
             
     </link>
 
@@ -191,6 +297,17 @@
         	<parent link="gripper_base"/>
         	<child link="claw_L"/>
         </joint>
+
+    <transmission name="trans_gripper_base_claw_L">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="gripper_base_claw_L">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_gripper_base_claw_L">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
 
     <link name = "claw_L">
 			<visual>
