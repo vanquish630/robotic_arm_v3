@@ -18,17 +18,21 @@ arm_group = moveit_commander.MoveGroupCommander("arm")
 arm_group.set_named_target("home")
 plan1 = arm_group.go()
 
+# We can get the joint values from the group and adjust some of the values:
+joint_goal = arm_group.get_current_joint_values()
+joint_goal[0] = 0
+joint_goal[1] = -pi/4
+joint_goal[2] = 0
+joint_goal[3] = -pi/2
+joint_goal[4] = 0
+joint_goal[5] = 0
 
+# The go command can be called with joint values, poses, or without any
+# parameters if you have already set the pose or joint target for the group
+arm_group.go(joint_goal, wait=True)
 
-
-pose_goal = geometry_msgs.msg.Pose()
-pose_goal.orientation.w = 1.0
-pose_goal.position.x = 0.4
-pose_goal.position.y = 0
-pose_goal.position.z = 0.2
-
-arm_group.set_pose_target(pose_goal)
-plan1 = arm_group.go()
+# Calling ``stop()`` ensures that there is no residual movement
+arm_group.stop()
 
 
 
