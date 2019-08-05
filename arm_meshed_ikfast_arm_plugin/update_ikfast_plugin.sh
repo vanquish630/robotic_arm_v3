@@ -1,0 +1,1 @@
+rosrun moveit_kinematics create_ikfast_moveit_plugin.py arm_mesh arm arm_meshed_ikfast_arm_plugin /home/sohan/simulation_ws/src/arm_meshed_ikfast_arm_plugin/src/arm_mesh_arm_ikfast_solver.cpp
